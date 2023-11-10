@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h4 class="mt-4 display-4">List of Dogs</h4>
+  </div>
+  <%= link_to 'Add New Dog', new_dog_path %>
+
+   <% if @dogs.present? %>
+    <div class="row justify-content-center">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">
+              Name
+            </th>
+
+            <th scope="col">
+              Breed
+            </th>
+
+            <th scope="col" colspan="3">
+              Action
+            </th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% @dogs.each do |dog| %>
+            <tr>
+              <td>
+                <%= dog.name %>
+              </td>
+
+              <td>
+                <%= dog.breed %>
+              </td>
+              
+              <td>
+                <%= link_to "Show Dog", dog_path(dog.id) %>
+              </td>
+
+              <td> 
+                <%= link_to "Edit", edit_dog_path(dog.id) %>
+              </td>
+
+              <td>
+                <%= button_to "Destroy", dog_path(dog.id), method: :delete, data: { confirm: "Are you sure you want to delete this dog?" } %>
+              </td>              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
+</div>
